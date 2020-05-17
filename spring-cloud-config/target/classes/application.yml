@@ -1,0 +1,39 @@
+server:
+  port: 8001
+spring:
+  profiles:
+    active: native
+  application:
+    name: store-cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri:  https://github.com/RyougiSHikii/online-education     # 配置git仓库的地址
+          search-paths: config-center/dev                           # git仓库地址下的相对地址，可以配置多个，用,分割。
+          username:                        # git仓库的账号
+          password:                             # git仓库的密码
+        native:
+          search-locations: file:C:\Users\56925\IdeaProjects\v-store-cloud\config-center\dev
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: violet
+    password: violet
+    virtual-host: /violet
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/   # 注册中心eureka地址
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
+ # security:
+   # enabled: false
+
+
+    #  search-locations: file:C:\Users\56925\IdeaProjects\v-store-cloud\config-center
